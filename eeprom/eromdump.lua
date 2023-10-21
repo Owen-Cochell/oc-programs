@@ -18,6 +18,7 @@ else
     -- Define the path as the first argument
 
     local path = args[1]
+end
 
 -- Include the components:
 
