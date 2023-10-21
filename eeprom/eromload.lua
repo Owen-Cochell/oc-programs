@@ -36,7 +36,7 @@ local file = io.open(path, "r")
 
 print("Saving content to: ", component.eeprom.getLabel())
 
-local contents = file:read()
+local contents = file:read("*all")
 
 -- Close file contents
 
