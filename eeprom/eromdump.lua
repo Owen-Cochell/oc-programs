@@ -2,9 +2,18 @@
 -- The file can be provided on the command line,
 -- otherwise we simply dump to errprom.dump
 
--- Define the path
+-- Determine if we have arguments:
 
-local path = 'errprom.dump'
+if (#arg < 2):
+then
+    -- Define the path
+
+    local path = 'errprom.dump'
+else
+
+    -- Define the path as the first argument
+
+    local path = arg[1]
 
 -- Include the components:
 
