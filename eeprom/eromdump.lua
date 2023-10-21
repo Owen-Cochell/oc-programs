@@ -2,18 +2,22 @@
 -- The file can be provided on the command line,
 -- otherwise we simply dump to errprom.dump
 
+-- Parse arguments
+
+local shell = require("shell")
+local args, ops = shell.parse(...)
+
 -- Determine if we have arguments:
 
-if (#arg < 2):
+if (#args < 1):
 then
     -- Define the path
 
     local path = 'errprom.dump'
 else
-
     -- Define the path as the first argument
 
-    local path = arg[1]
+    local path = args[1]
 
 -- Include the components:
 
