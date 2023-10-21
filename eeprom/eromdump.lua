@@ -22,11 +22,15 @@ else
     path = args[1]
 end
 
+print("Saving contentsd to: " + path)
+
 -- Include the components:
 
 local component = require("component")
 
 -- Get the EERP Contents
+
+print("Getting content from: " + component.eeprom.getLabel())
 
 local contents = component.eeprom.get()
 

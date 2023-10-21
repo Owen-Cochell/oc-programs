@@ -32,7 +32,7 @@ local file = io.open(path, "r")
 
 -- Write file contents:
 
-local contents = file:read(contents)
+local contents = file:read()
 
 -- Close file contents
 
