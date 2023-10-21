@@ -15,7 +15,7 @@ then
     -- Not enough arguments
 
     print("Error - Must provide path to ROM file to be loaded!")
-    exit()
+    os.exit()
 else
     -- Define the path as the first argument
 
