@@ -22,6 +22,8 @@ else
     path = args[1]
 end
 
+print("Loading content from: ", path)
+
 -- Include the components:
 
 local component = require("component")
@@ -31,6 +33,8 @@ local component = require("component")
 local file = io.open(path, "r")
 
 -- Write file contents:
+
+print("Saving content to: ", component.eeprom.getLabel())
 
 local contents = file:read()
 

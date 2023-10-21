@@ -22,7 +22,7 @@ else
     path = args[1]
 end
 
-print("Saving contentsd to: ", path)
+print("Saving content to: ", path)
 
 -- Include the components:
 
