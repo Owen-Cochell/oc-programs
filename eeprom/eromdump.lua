@@ -9,15 +9,17 @@ local args, ops = shell.parse(...)
 
 -- Determine if we have arguments:
 
+local path = ''
+
 if (#args < 1)
 then
     -- Define the path
 
-    local path = 'errprom.dump'
+    path = 'errprom.dump'
 else
     -- Define the path as the first argument
 
-    local path = args[1]
+    path = args[1]
 end
 
 -- Include the components:
