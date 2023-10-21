@@ -9,7 +9,7 @@ local args, ops = shell.parse(...)
 
 -- Determine if we have arguments:
 
-if (#args < 1):
+if (#args < 1)
 then
     -- Define the path
 
