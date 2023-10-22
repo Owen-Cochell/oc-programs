@@ -29,4 +29,4 @@ term.write(tostring(y))
 
 -- Set the viewpoint:
 
-gpu.setViewpoint(x, y)
+gpu.setViewport(x, y)
