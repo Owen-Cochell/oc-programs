@@ -48,7 +48,8 @@ local gpu = term.gpu()
 
 -- Set the foreground color, use a constant:
 
-gpu.setForeground(0xFF0000)
+gpu.setForeground(foreground)
+gpu.setBackground(background)
 
 -- Reset the screen
 
