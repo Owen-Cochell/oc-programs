@@ -31,6 +31,10 @@ local term = require("term")
 
 local gpu = term.gpu()
 
+-- Set the foreground color, use a constant:
+
+gpu.setForeground(0xFF0000)
+
 -- Reset the screen
 
 term.clear()
