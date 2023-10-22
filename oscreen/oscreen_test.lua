@@ -30,3 +30,7 @@ term.write(tostring(y))
 -- Set the viewpoint:
 
 gpu.setViewport(x, y)
+
+-- Sleep for some time
+
+os.sleep(10)
