@@ -47,10 +47,6 @@ local x, y = term.getCursor()
 
 gpu.setViewport(x, y)
 
--- -- Move the cursor out of the viewport:
-
--- term.setCursor(x+1, y+1)
-
 -- Read forever
 
 io.read()
