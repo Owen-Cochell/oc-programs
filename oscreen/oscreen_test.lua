@@ -17,3 +17,12 @@ term.clear()
 -- Write some text
 
 term.write("This is a test!")
+
+-- get the current cursor position
+
+local x, y = term.getCursor()
+
+-- Show the position:
+
+term.write(tostring(x))
+term.write(tostring(y))
