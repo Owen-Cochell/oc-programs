@@ -37,7 +37,7 @@ term.clear()
 
 -- Write some text
 
-term.write(text)
+term.write(text, false)
 
 -- get the current cursor position
 
