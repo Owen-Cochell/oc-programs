@@ -8,7 +8,7 @@ local term = require("term")
 
 -- Get the GPU
 
-local gpu = term.gpu
+local gpu = term.gpu()
 
 -- Reset the screen
 
