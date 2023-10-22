@@ -26,3 +26,7 @@ local x, y = term.getCursor()
 
 term.write(tostring(x))
 term.write(tostring(y))
+
+-- Set the viewpoint:
+
+gpu.setViewpoint(x, y)
