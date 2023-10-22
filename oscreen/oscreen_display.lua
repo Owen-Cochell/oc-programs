@@ -9,7 +9,7 @@ local args, ops = shell.parse(...)
 
 -- Determine if we have arguments:
 
-local text = ''
+local path = ''
 local foreground = 0xFFFFFF
 local background = 0
 
@@ -17,26 +17,31 @@ if (#args < 1)
 then
     -- Not enough arguments
 
-    print("Error - Must provide text to display!")
+    print("Error - Must provide path to display file!")
     os.exit()
 elseif (#args < 2)
 then
     -- Define the path as the first argument
 
-    text = args[1]
+    path = args[1]
 elseif (#args < 3)
 then
     -- Define the foreground as the second argument
 
-    text = args[1]
+    path = args[1]
     foreground = tonumber(args[2])
 else
     -- Define the text, foreground, and background
     
-    text = args[1]
+    path = args[1]
     foreground = tonumber(args[2])
     background = tonumber(args[3])
 end
+
+-- Load text from given file
+
+local file = io.open(path, "r")
+local text = file:read("*all")
 
 -- Get the terminal
 
