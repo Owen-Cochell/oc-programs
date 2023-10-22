@@ -38,10 +38,9 @@ else
     background = tonumber(args[3])
 end
 
--- Load text from given file
+-- Create file
 
 local file = io.open(path, "r")
-local text = file:read("*all")
 
 -- Get the terminal
 
@@ -60,9 +59,24 @@ gpu.setBackground(background)
 
 term.clear()
 
--- Write some text
+-- Iterate over each line
 
-term.write(text)
+local mwidth = 0
+
+for line in file:lines() do
+
+    -- Determine if this line has a larger width
+
+    if (line:len() > mwidth)
+    then
+        -- Set the new width
+        mwidth = line:len()
+    end
+
+    -- Write the line
+
+    term.write(line)
+end
 
 -- get the current cursor position
 
@@ -70,7 +84,7 @@ local x, y = term.getCursor()
 
 -- Set the viewpoint:
 
-gpu.setViewport(x, y)
+gpu.setViewport(mwidth, y)
 
 -- Read forever
 
