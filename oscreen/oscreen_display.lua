@@ -62,6 +62,7 @@ term.clear()
 -- Iterate over each line
 
 local mwidth = 0
+local row = 1
 
 for line in file:lines() do
 
@@ -75,20 +76,25 @@ for line in file:lines() do
 
     -- Write the line
 
-    term.write(line)
+    -- term.write(line)
+
+    gpu.set(1, row, line)
+
+    -- Increment row num
+    row++
 end
 
 -- get the current cursor position
 
-local x, y = term.getCursor()
+--local x, y = term.getCursor()
 
 -- Move the cursor to zero position
 
-term.setCursor(1, 1)
+--term.setCursor(1, 1)
 
 -- Set the viewpoint:
 
-gpu.setViewport(mwidth, y)
+gpu.setViewport(mwidth, row)
 
 -- Read forever
 
