@@ -82,6 +82,10 @@ end
 
 local x, y = term.getCursor()
 
+-- Move the cursor to zero position
+
+term.setCursor(1, 1)
+
 -- Set the viewpoint:
 
 gpu.setViewport(mwidth, y)
