@@ -86,14 +86,6 @@ for line in file:lines() do
     row = row + 1
 end
 
--- get the current cursor position
-
---local x, y = term.getCursor()
-
--- Move the cursor to zero position
-
---term.setCursor(1, 1)
-
 -- Set the viewpoint:
 
 gpu.setViewport(mwidth, row-1)
@@ -108,4 +100,4 @@ gpu.setResolution(xres, yres)
 
 -- Clear the screen:
 
-gpu.fill(1, 1, xres, yres, " ")
+term.clear()
