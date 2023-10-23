@@ -42,22 +42,14 @@ end
 
 local file = io.open(path, "r")
 
--- Get the terminal
-
-local term = require("term")
-
 -- Get the GPU
 
-local gpu = term.gpu()
+local gpu = require("gpu")
 
 -- Set the foreground color, use a constant:
 
 gpu.setForeground(foreground)
 gpu.setBackground(background)
-
--- Reset the screen
-
-term.clear()
 
 -- Iterate over each line
 
@@ -76,12 +68,10 @@ for line in file:lines() do
 
     -- Write the line
 
-    -- term.write(line)
-
     gpu.set(1, row, line)
 
     -- Increment row num
-    row++
+    row += 1
 end
 
 -- get the current cursor position
@@ -94,7 +84,7 @@ end
 
 -- Set the viewpoint:
 
-gpu.setViewport(mwidth, row)
+gpu.setViewport(mwidth, row-1)
 
 -- Read forever
 
