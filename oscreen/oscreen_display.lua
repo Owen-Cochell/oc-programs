@@ -44,7 +44,7 @@ local file = io.open(path, "r")
 
 -- Get the GPU
 
-local gpu = require("gpu")
+local gpu = require("component").gpu
 
 -- Set the foreground color, use a constant:
 
