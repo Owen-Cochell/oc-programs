@@ -46,6 +46,14 @@ local file = io.open(path, "r")
 
 local gpu = require("component").gpu
 
+-- Get the current resolution:
+
+local xres, yres = gpu.getResolution()
+
+-- Clear the screen:
+
+gpu.fill(1, 1, xres, yres, " ")
+
 -- Set the foreground color, use a constant:
 
 gpu.setForeground(foreground)
@@ -89,3 +97,11 @@ gpu.setViewport(mwidth, row-1)
 -- Read forever
 
 io.read()
+
+-- Finally, reset the resolution:
+
+gpu.setResolution(xres, yres)
+
+-- Clear the screen:
+
+gpu.fill(1, 1, xres, yres, " ")
