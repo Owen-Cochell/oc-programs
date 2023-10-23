@@ -50,17 +50,6 @@ local term = require("term")
 
 local gpu = term.gpu()
 
--- Create a new blink function
-
-local nfunc = function()
-    -- Do nothing
-    local thing = 1
-end
-
--- Set null function
-
-term.pull = nfunc
-
 -- Get the current resolution:
 
 local xres, yres = gpu.getResolution()
