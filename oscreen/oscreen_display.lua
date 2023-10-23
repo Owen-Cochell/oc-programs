@@ -71,7 +71,7 @@ for line in file:lines() do
     gpu.set(1, row, line)
 
     -- Increment row num
-    row += 1
+    row = row + 1
 end
 
 -- get the current cursor position
