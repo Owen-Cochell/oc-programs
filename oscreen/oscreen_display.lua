@@ -42,9 +42,13 @@ end
 
 local file = io.open(path, "r")
 
+-- Get the term
+
+local term = require("term")
+
 -- Get the GPU
 
-local gpu = require("component").gpu
+local gpu = term.gpu
 
 -- Get the current resolution:
 
@@ -52,7 +56,7 @@ local xres, yres = gpu.getResolution()
 
 -- Clear the screen:
 
-gpu.fill(1, 1, xres, yres, " ")
+term.clear()
 
 -- Set the foreground color, use a constant:
 
