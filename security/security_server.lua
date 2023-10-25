@@ -5,31 +5,31 @@
 local comp = require("component")
 local event = require("event")
 local seri = require("serialization")
-local modem = component.modem
+local modem = comp.modem
 
 -- This strucutre defines the credentials for diffrent devices.
 -- Passwords, RFID cards, and biosignatures are supported.
 -- Each credential has a name associated with it,
 -- which can be used to tie certain devices to certain permissions.
 local credentials = {
-    'passwords': {
-        'test': '123456'
+    passwords= {
+        test= '123456'
     },
-    'RFID': {
-        'test': 'test'
+    RFID= {
+        test= 'test'
     },
-    'bio': {
-        'test': 'test'
-    }
+    bio= {
+        test= 'test'
+    },
 }
 
 -- This strucutre defines the permission map,
 -- Which allows you to map certain permissions to certain devices.
 local perm_map = {
-    '[DEVICE_NAME]': {
-        'passwords': {{'test'}},
-        'RFID': {{'test'}},
-        'bio': {{'test'}},
+    TESTD= {
+        passwords= {{'test'}},
+        RFID= {{'test'}},
+        bio= {{'test'}},
     }
 }
 
@@ -42,11 +42,11 @@ local port = 5554
 
 -- Open port we have specified
 
-m.open(port)
+modem.open(port)
 
 -- Ensure port has been opened:
 
-if (!m.isOpen(port))
+if (!modem.isOpen(port))
 then
     -- Do something..
     print("Unable to open port!!!")
@@ -71,13 +71,13 @@ local function has_value (tab, val)
     return false
 end
 
-local function send_fail(add: str, port: number)
+local function send_fail(add, port)
 
     -- Send fail code:
     modem.send(add, port, "fail")
 end
 
-local function send_pass(add: str, port: number)
+local function send_pass(add, port)
 
     -- Send pass code:
     modem.send(add, port, "pass")
@@ -89,15 +89,15 @@ end
 
 -- Network open requests look something like this:
 
-local ttttt = {
-    'name': 'dev_name',  -- Name of device we recieved
-    'perm_name': 'perm_name'  -- Name of permission
-    'perm_value': 'perm_value'  -- Value of the permission 
-}
+-- local ttttt = {
+--     'name': 'dev_name',  -- Name of device we recieved
+--     'perm_name': 'perm_name'  -- Name of permission
+--     'perm_value': 'perm_value'  -- Value of the permission 
+-- }
 
 -- This handler takes in permission data from devices,
 -- and determines if the device is allowed to open
-function handle_network(receiverAddress: string, senderAddress: string, port: number, distance: number, sdata: str)
+function handle_network(receiverAddress, senderAddress, port, distance, sdata)
 
     print("Got message from: " + senderAddress + " Sender Port: " + port)
 
@@ -145,9 +145,9 @@ function handle_network(receiverAddress: string, senderAddress: string, port: nu
 
     -- Permission name is valid, ensure permission value is in the permission set
 
-    for val in d_permname:
+    for val in d_permname do
 
-        -- We have a alias, get the original value:
+        -- We have a alias, get the original value
 
         local known_good = credentials[perm_name][val]
 
@@ -171,7 +171,7 @@ end
 
 -- Enter event loop
 
-while (true)
+while (true) do
 
     -- Just do nothing:
     io.read()

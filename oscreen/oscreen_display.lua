@@ -92,7 +92,7 @@ gpu.setViewport(mwidth, row-1)
 
 -- Read forever
 
-io.read()
+local junk = io.read()
 
 -- Finally, reset the resolution:
 
