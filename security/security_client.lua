@@ -22,7 +22,8 @@ local device_name = 'testd'
 
 local BIO_NAME = "bio"
 local PASS_NAME = "passwords"
-local CARD_NAME = "RFID"
+local RFID_NAME = "RFID"
+local MAG_NAME = "MAG"
 
 ----
 -- Library Methods
@@ -85,6 +86,13 @@ function on_bio(address, reader_uuid, player_uuid)
     print("Scanned Player: " .. player_uuid)
 
     send_request(BIO_NAME, player_uuid)
+end
+
+function on_card(eventName, address, playerName, cardData, cardUniqueId, isCardLocked, side)
+
+    -- Send card ID
+
+    send_request(MAG_NAME, cardData)
 end
 
 -- Open port we have specified

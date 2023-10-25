@@ -22,6 +22,9 @@ local credentials = {
         test='test',
         owen= 'c37c5c47-8927-4e7c-a324-bd3844e75110'
     },
+    MAG={
+        test='test',
+    }
 }
 
 -- This strucutre defines the permission map,
@@ -91,14 +94,6 @@ end
 ------
 -- Event Handlers
 ------
-
--- Network open requests look something like this:
-
--- local ttttt = {
---     'name': 'dev_name',  -- Name of device we recieved
---     'perm_name': 'perm_name'  -- Name of permission
---     'perm_value': 'perm_value'  -- Value of the permission 
--- }
 
 -- This handler takes in permission data from devices,
 -- and determines if the device is allowed to open
