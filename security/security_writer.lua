@@ -280,7 +280,7 @@ while (true) do
 
     local inp = io.input()
 
-    if (inp == "1") 
+    if (inp == "1")
     then
 
         -- Manage Credentials
