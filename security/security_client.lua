@@ -23,7 +23,7 @@ local device_name = 'testd'
 local tstruct = {
     name= 'testd',
     perm_name= 'passwords',
-    perm_value= '123456'
+    perm_value= '12'
 }
 
 -- Open port we have specified
