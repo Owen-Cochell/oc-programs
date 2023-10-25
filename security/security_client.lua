@@ -28,6 +28,7 @@ local tstruct = {
 
 -- Send structure to server
 
+print("Sending message: " + address + " Port: " + port)
 modem.send(address, port, seri.serialize(tstruct))
 
 -- Get response:

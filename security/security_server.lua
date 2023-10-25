@@ -169,6 +169,10 @@ function handle_network(receiverAddress, senderAddress, port, distance, sdata)
     send_fail(senderAddress, port)
 end
 
+-- Register event handlers
+
+event.listen("modem_message", handle_network)
+
 -- Enter event loop
 
 while (true) do
