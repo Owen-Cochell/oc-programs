@@ -26,6 +26,19 @@ local tstruct = {
     perm_value= '123456'
 }
 
+-- Open port we have specified
+
+modem.open(port)
+
+-- Ensure port has been opened:
+
+if (not modem.isOpen(port))
+then
+    -- Do something..
+    print("Unable to open port!!!")
+    os.exit()
+end
+
 -- Send structure to server
 
 print("Sending message: " .. address .. " Port: " .. port)

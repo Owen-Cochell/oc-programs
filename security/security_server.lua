@@ -73,12 +73,16 @@ end
 
 local function send_fail(add, port)
 
+    print("Sending fail code!")
+    print(add)
     -- Send fail code:
     modem.send(add, port, "fail")
 end
 
 local function send_pass(add, port)
 
+    print("Sending pass code!")
+    print(add)
     -- Send pass code:
     modem.send(add, port, "pass")
 end
