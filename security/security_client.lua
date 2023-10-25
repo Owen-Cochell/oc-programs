@@ -21,9 +21,9 @@ local device_name = 'testd'
 -- Define a test structure
 
 local tstruct = {
-    name= 'testd',
+    name= 'dum',
     perm_name= 'passwords',
-    perm_value= '12'
+    perm_value= '123456'
 }
 
 -- Open port we have specified
