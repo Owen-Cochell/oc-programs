@@ -18,13 +18,72 @@ local address = '0ef4f9a4-6720-43a6-8b84-7a9d350ff700'
 -- Name of this device
 local device_name = 'testd'
 
--- Define a test structure
+-- Define Permission Names:
 
-local tstruct = {
-    name= 'dum',
-    perm_name= 'passwords',
-    perm_value= '123456'
-}
+local BIO_NAME = "bio"
+local PASS_NAME = "passwords"
+local CARD_NAME = "RFID"
+
+----
+-- Library Methods
+----
+
+function send_request(pname, pvalue)
+
+    -- Construct the request:
+
+    local req = {
+        name=device_name,
+        perm_name=pname,
+        perm_value=pvalue,
+    }
+
+    -- Send to server:
+
+    print("Sending request to server")
+    modem.send(address, port, seri.serialize(req))
+end
+
+function got_pass()
+end
+
+----
+-- Network Handlers
+----
+
+function recieve_message(message_name, recieverAddress, senderAddress, port, distance, sdata)
+
+    -- Ensure we can only accept messages from the server:
+
+    if (senderAddress ~= address)
+    then
+        -- Not valid, ignore
+        print("Dropping packet, not from server!")
+        return
+    end
+
+    -- Otherwise, determine if we have a pass:
+
+    if (sdata == "pass")
+    then
+        -- We are authenticated! Do something!
+
+        got_pass()
+    end
+end
+
+----
+-- Device Handlers
+----
+
+function on_bio(address, reader_uuid, player_uuid)
+
+    -- Just send the player UUID
+
+    print("Scanned Player: " .. player_uuid)
+
+    send_request(BIO_NAME, player_uuid)
+end
 
 -- Open port we have specified
 
@@ -39,14 +98,23 @@ then
     os.exit()
 end
 
--- Send structure to server
+----
+-- Component Setup
+----
 
-print("Sending message: " .. address .. " Port: " .. port)
-modem.send(address, port, seri.serialize(tstruct))
+-- Determine if we have a bioreader
 
--- Get response:
+if (comp.IsAvailable("os_biometric"))
+then
+    -- Is present, add event handler
 
-local _, _, from, port, _, message = event.pull("modem_message")
+    print("Found BioReader!")
 
-print("Got Message: " .. from .. " On Port: " .. port)
-print(message)
+    event.listen("bioReader", on_bio)
+end
+
+-- No, do nothing
+
+while true do
+    local junk = io.read()
+end
