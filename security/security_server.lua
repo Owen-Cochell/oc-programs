@@ -101,7 +101,7 @@ function handle_network(message_name, senderAddress, recieverAddress, port, dist
 
     print("Got message from: " .. senderAddress .. " Sender Port: " .. port)
 
-    print(perm_map)
+    print("Perm Map: " .. perm_map)
 
     -- Deserialize the data:
 
