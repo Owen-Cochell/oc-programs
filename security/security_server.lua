@@ -135,6 +135,7 @@ function handle_network(message_name, recieverAddress, senderAddress, port, dist
     then
         -- Event name not found, log and return
         print("parmissions not found for device: " .. name)
+        send_fail(senderAddress, port)
         return
     end
 
@@ -189,17 +190,11 @@ end
 
 -- Register event handlers
 
---event.listen("modem_message", handle_network)
+event.listen("modem_message", handle_network)
 
 -- Enter event loop
 
 while (true) do
-
-    -- Pull an event:
-
-    local one, two, three, four, five, six = event.pull("modem_message")
-    handle_network(one, two, three, four, five, six)
-
     -- Just do nothing:
     io.read()
 end
