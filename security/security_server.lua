@@ -99,7 +99,7 @@ end
 -- and determines if the device is allowed to open
 function handle_network(receiverAddress, senderAddress, port, distance, sdata)
 
-    print("Got message from: " + senderAddress + " Sender Port: " + port)
+    print("Got message from: " .. senderAddress .. " Sender Port: " .. port)
 
     -- Deserialize the data:
 
@@ -109,19 +109,19 @@ function handle_network(receiverAddress, senderAddress, port, distance, sdata)
 
     local name = data['name']
 
-    print("Data Name: " + name)
+    print("Data Name: " .. name)
 
     -- Determine the permission name
 
     local perm_name = data['perm_name']
 
-    print("Permission Name: " + perm_name)
+    print("Permission Name: " .. perm_name)
 
     -- Determine the permission value
 
     local perm_value = data['perm_value']
 
-    print("Permission Value: " + perm_value)
+    print("Permission Value: " .. perm_value)
 
     -- Grab the device permission map:
 

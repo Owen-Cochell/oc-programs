@@ -28,12 +28,12 @@ local tstruct = {
 
 -- Send structure to server
 
-print("Sending message: " + address + " Port: " + port)
+print("Sending message: " .. address .. " Port: " .. port)
 modem.send(address, port, seri.serialize(tstruct))
 
 -- Get response:
 
 local _, _, from, port, _, message = event.pull("modem_message")
 
-print("Got Message: " + from + " On Port: " + port)
+print("Got Message: " .. from .. " On Port: " .. port)
 print(message)
