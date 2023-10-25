@@ -161,6 +161,7 @@ function handle_network(message_name, senderAddress, recieverAddress, port, dist
     for key, val in pairs(d_permname) do
 
         print("Key: " .. key)
+        print("Val: " .. val)
 
         -- We have a alias, get the original value
 
