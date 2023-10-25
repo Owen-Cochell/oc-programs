@@ -125,6 +125,15 @@ function handle_network(message_name, senderAddress, recieverAddress, port, dist
 
     print("Permission Value: " .. perm_value)
 
+    -- Determine if name is in perm_map:
+
+    if (not set_contains(perm_map, name))
+    then
+        -- Event name not found, log and return
+        print("parmissions not found for device: " .. name)
+        return
+    end
+
     -- Grab the device permission map:
 
     local d_permmap = perm_map[name]
