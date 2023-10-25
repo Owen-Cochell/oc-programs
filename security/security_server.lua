@@ -154,7 +154,7 @@ function handle_network(message_name, senderAddress, recieverAddress, port, dist
 
     -- Permission name is valid, ensure permission value is in the permission set
 
-    for key, val in pairs(perm_map[name][perm_map]) do
+    for key, val in pairs(perm_map[name][perm_name]) do
 
         print("Key: " .. key)
         print("Val: " .. val)
