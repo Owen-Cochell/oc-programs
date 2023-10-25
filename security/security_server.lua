@@ -136,13 +136,11 @@ function handle_network(message_name, senderAddress, recieverAddress, port, dist
 
     -- Grab the device permission map:
 
-    local d_permmap = perm_map[name]
-
     print("Got Permap!")
 
     -- Determine if the given permission name is valid:
 
-    if (not set_contains(d_permmap, perm_name))
+    if (not set_contains(perm_map[name], perm_name))
     then
 
         print("Perm not present, sending fail code!")
@@ -154,11 +152,9 @@ function handle_network(message_name, senderAddress, recieverAddress, port, dist
 
     -- Get the device permission name:
 
-    local d_permname = d_permmap[perm_name]
-
     -- Permission name is valid, ensure permission value is in the permission set
 
-    for key, val in pairs(d_permname) do
+    for key, val in pairs(perm_map[name][perm_map]) do
 
         print("Key: " .. key)
         print("Val: " .. val)
