@@ -27,9 +27,9 @@ local credentials = {
 -- Which allows you to map certain permissions to certain devices.
 local perm_map = {
     testd= {
-        passwords= {{'test'}},
-        RFID= {{'test'}},
-        bio= {{'test'}},
+        passwords= {'test'},
+        RFID= {'test'},
+        bio= {'test'},
     }
 }
 
