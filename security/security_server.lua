@@ -160,9 +160,13 @@ function handle_network(message_name, senderAddress, recieverAddress, port, dist
 
     for key, val in pairs(d_permname) do
 
+        print("Key: " + key)
+
         -- We have a alias, get the original value
 
         local known_good = credentials[perm_name][val]
+
+        print("Known Good: " + known_good)
 
         -- Determine if this value matches sent:
 
