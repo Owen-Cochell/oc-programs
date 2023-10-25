@@ -102,6 +102,10 @@ end
 -- Component Setup
 ----
 
+-- message handler
+
+event.listen("modem_message", recieve_message)
+
 -- Determine if we have a bioreader
 
 if (comp.isAvailable("os_biometric"))
@@ -127,4 +131,13 @@ end
 
 -- Unregister event handlers:
 
-event.ignore()
+event.ignore("modem_message", recieve_message)
+
+if (comp.isAvailable("os_biometric"))
+then
+    -- Is present, add event handler
+
+    print("Removing BioReader!")
+
+    event.ignore("bioReader", on_bio)
+end
