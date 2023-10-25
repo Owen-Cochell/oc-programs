@@ -100,6 +100,7 @@ end
 function handle_network(receiverAddress, senderAddress, port, distance, sdata)
 
     print("Got message from: " .. senderAddress .. " Sender Port: " .. port)
+    print(sdata)
 
     -- Deserialize the data:
 
