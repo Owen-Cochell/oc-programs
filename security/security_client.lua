@@ -104,7 +104,7 @@ end
 
 -- Determine if we have a bioreader
 
-if (comp.IsAvailable("os_biometric"))
+if (comp.isAvailable("os_biometric"))
 then
     -- Is present, add event handler
 
