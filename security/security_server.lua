@@ -106,6 +106,8 @@ function handle_network(receiverAddress, senderAddress, port, distance, sdata)
 
     data = seri.unserialize(sdata)
 
+    print("Done unserializing")
+
     -- Determine the deivce name
 
     local name = data['name']
