@@ -46,7 +46,7 @@ modem.open(port)
 
 -- Ensure port has been opened:
 
-if (!modem.isOpen(port))
+if (not modem.isOpen(port))
 then
     -- Do something..
     print("Unable to open port!!!")
@@ -129,7 +129,7 @@ function handle_network(receiverAddress, senderAddress, port, distance, sdata)
 
     -- Determine if the given permission name is valid:
 
-    if (!set_contains(d_permmap, perm_name))
+    if (not set_contains(d_permmap, perm_name))
     then
 
         print("Perm not present, sending fail code!")
