@@ -45,6 +45,8 @@ function send_request(pname, pvalue)
 end
 
 function got_pass()
+
+    print("We are authenticated!")
 end
 
 ----
