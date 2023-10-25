@@ -100,12 +100,6 @@ end
 function handle_network(message_name, senderAddress, recieverAddress, port, distance, sdata)
 
     print("Got message from: " .. senderAddress .. " Sender Port: " .. port)
-    print(message_name)
-    print(senderAddress)
-    print(recieverAddress)
-    print(port)
-    print(thing3)
-    print(sdata)
 
     -- Deserialize the data:
 
@@ -134,6 +128,8 @@ function handle_network(message_name, senderAddress, recieverAddress, port, dist
     -- Grab the device permission map:
 
     local d_permmap = perm_map[name]
+
+    print("Permission Map: " .. d_permmap)
 
     -- Determine if the given permission name is valid:
 
