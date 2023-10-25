@@ -186,11 +186,16 @@ end
 
 -- Register event handlers
 
-event.listen("modem_message", handle_network)
+--event.listen("modem_message", handle_network)
 
 -- Enter event loop
 
 while (true) do
+
+    -- Pull an event:
+
+    local one, two, three, four, five, six = event.pull("modem_message")
+    handle_network(one, two, three, four, five, six)
 
     -- Just do nothing:
     io.read()
