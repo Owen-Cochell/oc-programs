@@ -30,7 +30,7 @@ local perm_map = {
     testd= {
         passwords= {'test'},
         RFID= {'test'},
-        bio= {'test'},
+        bio= {'test', 'owen'},
     }
 }
 
