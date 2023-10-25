@@ -138,7 +138,7 @@ function handle_network(message_name, senderAddress, recieverAddress, port, dist
 
     local d_permmap = perm_map[name]
 
-    print("Permission Map: " .. d_permmap)
+    print("Got Permap!")
 
     -- Determine if the given permission name is valid:
 
