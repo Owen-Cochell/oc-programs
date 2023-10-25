@@ -158,7 +158,7 @@ function handle_network(message_name, senderAddress, recieverAddress, port, dist
 
     -- Permission name is valid, ensure permission value is in the permission set
 
-    for val in d_permname do
+    for key, val in pairs(d_permname) do
 
         -- We have a alias, get the original value
 
