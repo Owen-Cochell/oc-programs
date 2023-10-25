@@ -97,9 +97,14 @@ end
 
 -- This handler takes in permission data from devices,
 -- and determines if the device is allowed to open
-function handle_network(receiverAddress, senderAddress, port, distance, sdata)
+function handle_network(thing, thing2, senderAddress, port, thing3, sdata)
 
     print("Got message from: " .. senderAddress .. " Sender Port: " .. port)
+    print(thing)
+    print(thing2)
+    print(senderAddress)
+    print(port)
+    print(thing3)
     print(sdata)
 
     -- Deserialize the data:
