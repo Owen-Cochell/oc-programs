@@ -117,4 +117,14 @@ end
 
 while true do
     local junk = io.read()
+
+    if (junk == 'q')
+    then
+        -- Break out of this loop
+        break
+    end
 end
+
+-- Unregister event handlers:
+
+event.ignore()

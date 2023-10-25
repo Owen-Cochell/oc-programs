@@ -196,5 +196,16 @@ event.listen("modem_message", handle_network)
 
 while (true) do
     -- Just do nothing:
-    io.read()
+    local junk = io.read()
+
+    if (junk == 'q')
+    then
+        -- Break out of this loop
+        break
+    end
+
 end
+
+-- Unregister event handlers
+
+event.ignore("modem_message", handle_network)
