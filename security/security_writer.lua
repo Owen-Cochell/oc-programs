@@ -51,6 +51,7 @@ function add_card()
     print("How will we add a card?")
     print("1. Create new card")
     print("2. Add an existing card")
+    print("3. Manual Card Data")
     
     local cchoice = io.input()
 
@@ -114,6 +115,18 @@ function add_card()
 
         print("Card reader is not present!")
         return BAD_VALUE
+    end
+
+    if (cchoice == "3")
+    then
+
+        -- Just take an input:
+
+        print("Please enter card data:")
+
+        local cardData = io.input()
+
+        return cardData
     end
 
     -- otherwise, return bad valueL:
@@ -194,7 +207,7 @@ function add_credential()
 
         -- Determine if we have a bioreader:
 
-        if (comp.isAvailable(os_biometric))
+        if (comp.isAvailable("os_biometric"))
         then
 
             -- Get a value from the reader:
@@ -206,6 +219,13 @@ function add_credential()
             -- Add the value:
 
             local perm_value = player_uuid
+        
+        else
+
+            -- No bioreader, just prompt:
+
+            print("Please enter a player uuid:")
+            local perm_value = io.input()
         end
     end
 
@@ -239,8 +259,160 @@ function remove_credential()
     then
         -- Remove the credential:
 
+        print("Removing credential...")
+
         credentials[ptype].remove(pname)
+
+        return
     end
+
+    print("Credential does not exist!")
+end
+
+function add_dev_map()
+
+    -- Adds a device mapping
+
+    print("Enter a device name:")
+
+    local dname = io.input()
+
+    -- Ensure device exists
+
+    if (perm_map[dname] == nil)
+    then
+        
+        -- Create the device:
+
+        perm_map[dname] = {}
+    end
+
+    -- As for permission type
+
+    print("Enter a permission type:")
+
+    local ptype = io.input()
+
+    -- Ensure permission type exists:
+
+    if (credentials[ptype] == nil)
+    then
+
+        -- Not found, raise a problem
+
+        print("Permission type does not exist!")
+
+        return
+    end
+
+    -- Ask for permission name:
+
+    print("Enter a permission name:")
+
+    local pname = io.input()
+
+    -- Ensure permission exists:
+
+    if (credentials[ptype][pname] == nil)
+    then
+        
+        -- Not found, raise a problem
+
+        print("Permission does not exist!")
+
+        return
+    end
+
+    -- Otherwise, add the permission to the device:
+
+    perm_map[dname][ptype].add(pname)
+
+end
+
+function remove_dev_map()
+
+    -- Get device name
+
+    print("Enter a device name:")
+
+    local dname = io.input()
+
+    -- Ensure deivce exists
+
+    if (perm_map[dname] == nil)
+    then
+        
+        -- Not found, raise a problem
+
+        print("Device does not exist!")
+
+        return
+    end
+
+    -- Ask for permission type
+
+    print("Enter a permission type:")
+
+    local ptype = io.input()
+
+    -- Ensure permission exists
+
+    if (perm_map[dname][ptype] == nil)
+    then
+        
+        -- Not found, raise a problem
+
+        print("Permission type does not exist!")
+
+        return
+    end
+
+    -- Ask for permission name
+
+    print("Enter a permission name:")
+
+    local pname = io.input()
+
+    -- Ensure permission exists
+
+    local index = perm_map[dname][ptype].indexOf(pname)
+
+    if (index ~= nil)
+    then
+        
+        -- Found, remove permission
+
+        perm_map[dname][ptype].remove(index)
+
+        return
+    end
+
+    print("Permission does not exist!")
+end
+
+function remove_device()
+
+    -- Ask for device name:
+
+    print("Enter a device name:")
+
+    local dname = io.input()
+
+    -- Ensure device exists
+
+    if (perm_map[dname] == nil)
+    then
+        
+        -- Not found, raise a problem
+
+        print("Device does not exist!")
+
+        return
+    end
+
+    -- Otherwise, remove device and all data:
+
+    perm_map.remove(dname)
 end
 
 -----
@@ -283,15 +455,63 @@ while (true) do
     if (inp == "1")
     then
 
+        print_credentials()
+
         -- Manage Credentials
 
         print("1. Add Credential")
         print("2. Remove Credential")
+
+        local inp = io.input()
+
+        if (inp == "1")
+        then
+            
+            -- Add a credential
+
+            add_credential()
+        end
+
+        if (inp == "2")
+        then
+            
+            -- Remove a credential
+
+            remove_credential()
+        end
     end
 
     if (inp == "2")
     then
         
+        print_devicemaps()
+
         -- Manage device mappings
+
+        print("1. Add Device Mapping")
+        print("2. Remove Device Mapping")
+        print("3. Remove Device")
+
+        local inp = io.input()
+
+        if (inp == "1")
+        then
+            
+            -- Add a device mapping
+
+            add_dev_map()
+        elseif (inp == "2")
+        then
+            
+            -- Remove a device mapping
+
+            remove_dev_map()
+        elseif (inp == "3")
+        then
+            
+            -- Remove a device
+
+            remove_device()
+        end
     end
 end

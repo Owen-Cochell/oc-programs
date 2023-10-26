@@ -7,6 +7,11 @@ local event = require("event")
 local seri = require("serialization")
 local modem = comp.modem
 
+local keypad = nil
+local has_keyad = false
+
+local rolldoor = nil
+
 -- For now, we are just a test script
 
 -- Port of server
@@ -48,6 +53,54 @@ end
 function got_pass()
 
     print("We are authenticated!")
+
+    if (has_keyad == true)
+    then
+        
+        -- We have a keypad, set the access granted:
+
+        setAuth(true)
+    end
+
+    if (rolldoor ~= nil)
+    then
+        
+        -- Handle the rolldoor:
+
+        handle_rolldoor()
+    end
+end
+
+function got_fail()
+
+    print("We failed to authenticate!")
+
+    if (has_keyad == true)
+    then
+        
+        -- We have a keypad, set the access denied:
+
+        setAuth(false)
+    end
+end
+
+function updateDisplay()
+    local displayString = ""
+    for i = 1, #keypadInput do
+        displayString = displayString .. "*"
+    end
+
+    keypad.setDisplay(displayString, 7)
+end
+
+function setAuth(auth)
+    if auth == true then
+        keypad.setDisplay("granted", 2)
+    else
+        keypad.setDisplay("denied", 4)
+    end
+    keypadInput = ""
+    os.sleep(1)
 end
 
 ----
@@ -73,6 +126,13 @@ function recieve_message(message_name, recieverAddress, senderAddress, port, dis
 
         got_pass()
     end
+
+    if (sdata == "fail")
+    then
+        -- We are not authenticated! Do something!
+
+        got_fail()
+    end
 end
 
 ----
@@ -93,6 +153,41 @@ function on_card(eventName, address, playerName, cardData, cardUniqueId, isCardL
     -- Send card ID
 
     send_request(MAG_NAME, cardData)
+end
+
+function keypadEvent(eventName, address, button, button_label)
+    print("button pressed: " .. button_label)
+
+    if button_label == "*" then
+        -- remove last character from input cache
+        keypadInput = string.sub(keypadInput, 1, -2)
+    elseif button_label == "#" then
+        -- Send pin to server
+
+        send_request(PASS_NAME, keypadInput)
+    else
+        -- add key to input cache if none of the above action apply
+        keypadInput = keypadInput .. button_label
+    end
+
+    updateDisplay()
+end
+
+function handle_rolldoor()
+
+    -- Opens and closes a rolldoor
+
+    print("Opening rolldoor")
+
+    rolldoor.open()
+
+    -- Wait 3 seconds:
+
+    os.sleep(3)
+
+    print("Closing rolldoor")
+
+    rolldoor.close()
 end
 
 -- Open port we have specified
@@ -127,7 +222,40 @@ then
     event.listen("bioReader", on_bio)
 end
 
--- No, do nothing
+if (comp.isAvailable("os_magreader"))
+then
+
+    -- Is present, add event handler
+
+    print("Found MagReader!")
+
+    event.listen("magData", on_card)
+end
+
+if (comp.isAvailable("os_keypad"))
+then
+    
+    -- Get the keypad:
+    keypad = comp.os_keypad
+
+    -- Add the event handler:
+
+    event.listen("keypad", keypadEvent)
+
+    -- Clear the keypad:
+
+    keypad.clearDisplay()
+end
+
+if (comp.isAvailable("os_rolldoor"))
+then
+    
+    -- Get the rolldoor:
+
+    rolldoor = comp.os_rolldoor
+end
+
+-- Now, do nothing
 
 while true do
     local junk = io.read()
@@ -145,9 +273,29 @@ event.ignore("modem_message", recieve_message)
 
 if (comp.isAvailable("os_biometric"))
 then
-    -- Is present, add event handler
+    -- Is present, remove event handler
 
     print("Removing BioReader!")
 
     event.ignore("bioReader", on_bio)
+end
+
+if (comp.isAvailable("os_magreader"))
+then
+    -- Is present, remove event handler
+
+    print("Found MagReader!")
+
+    event.ignore("magData", on_card)
+end
+
+if (has_keyad)
+then
+    -- Remove the event handler:
+
+    event.ignore("keypad", keypadEvent)
+
+    -- Set keypad to be inactive:
+
+    keypad.setDisplay("inactive", 6)
 end
