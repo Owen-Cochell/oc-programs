@@ -6,6 +6,9 @@ local seri = require("serialization")
 local event = require("event")
 local uuid = require("uuid")
 
+local cred_path = "/home/cred"
+local perm_path = "/home/perm"
+
 local BIO_NAME = "bio"
 local PASS_NAME = "passwords"
 local RFID_NAME = "RFID"
@@ -48,6 +51,42 @@ function indexOf(array, value)
         end
     end
     return nil
+end
+
+function load_data(cpath, dpath)
+
+    -- De-serialize:
+
+    local cfile = io.open(cpath, "r")
+    local dfile = io.open(dpath, "r")
+
+    -- Load contents:
+
+    local ccont = cfile:read("*all")
+    local dfile = dfile:read("*all")
+
+    -- De-serialize:
+
+    credentials = seri.unserialize(ccont)
+    perm_map = seri.unserialize(dfile)
+end
+
+function dump_data(cpath, dpath)
+    
+    -- load file
+
+    local cfile = io.open(cpath, "w")
+    local dfile = io.open(dpath, "w")
+
+    -- Serialize
+
+    local ccont = seri.serialize(credentials)
+    local dcont = seri.serialize(perm_map)
+
+    -- Save to file
+
+    cfile:write(ccont)
+    dfile:write(dcont)
 end
 
 -----
@@ -474,6 +513,10 @@ function print_devicemaps()
     print(seri.serialize(perm_map, true))
 end
 
+-- Load content:
+
+load_data(cred_path, perm_map)
+
 while (true) do
     
     -- Top Level Menu:
@@ -486,6 +529,8 @@ while (true) do
 
     print("1. Manage Credentials")
     print("2. Manage Device Mappings")
+    print("3. Save")
+    print("4. Exit")
 
     local inp = io.read()
 
@@ -550,5 +595,19 @@ while (true) do
 
             remove_device()
         end
+    end
+
+    if (inp == "3")
+    then
+        -- Save contents
+
+        dump_data(cred_path, perm_path)
+    end
+
+    if (inp == "4")
+    then
+        -- Just quit
+
+        break
     end
 end

@@ -32,6 +32,9 @@ local PASS_NAME = "passwords"
 local RFID_NAME = "RFID"
 local MAG_NAME = "MAG"
 
+local cred_path = "/home/cred"
+local perm_path = "/home/perm"
+
 ----
 -- Library Methods
 ----
@@ -103,6 +106,24 @@ function setAuth(auth)
     end
     keypadInput = ""
     os.sleep(1)
+end
+
+function load_data(cpath, dpath)
+
+    -- De-serialize:
+
+    local cfile = io.open(cpath, "r")
+    local dfile = io.open(dpath, "r")
+
+    -- Load contents:
+
+    local ccont = cfile:read("*all")
+    local dfile = dfile:read("*all")
+
+    -- De-serialize:
+
+    credentials = seri.unserialize(ccont)
+    perm_map = seri.unserialize(dfile)
 end
 
 ----
