@@ -421,7 +421,7 @@ function remove_device()
 
     -- Otherwise, remove device and all data:
 
-    perm_map.remove(dname)
+    perm_map[dname] = nil
 end
 
 -----
