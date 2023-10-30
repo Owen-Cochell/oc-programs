@@ -450,7 +450,7 @@ while (true) do
     print("1. Manage Credentials")
     print("2. Manage Device Mappings")
 
-    local inp = io.input()
+    local inp = io.read()
 
     if (inp == "1")
     then
