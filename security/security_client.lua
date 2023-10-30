@@ -254,7 +254,7 @@ then
     
     -- Get the rolldoor:
 
-    rolldoor = comp.os_rolldoor
+    rolldoor = comp.os_rolldoorcontroller
 
     -- Close it initially:
 
