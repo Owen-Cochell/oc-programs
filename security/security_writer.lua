@@ -240,7 +240,16 @@ function add_credential()
 
     -- Otherwise, add cred to list!
 
-    credentials[perm_name][name] = perm_value
+    local table = credentials[perm_name]
+
+    if (table == nil)
+    then
+        table = {}
+    end
+
+    table[name] = perm_value
+
+    credentials[perm_name] = table
 end
 
 function remove_credential()
