@@ -81,6 +81,11 @@ function got_pass()
 
         handle_securitydoor()
     end
+
+    if (has_keyad == true)
+    then
+        keypad.setDisplay("")
+    end
 end
 
 function got_fail()
