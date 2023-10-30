@@ -40,6 +40,9 @@ local perm_map = {
 -- Port number to utilze
 local port = 5554
 
+local cred_path = "/home/cred"
+local perm_path = "/home/perm"
+
 ----
 -- Server Setup
 ----
@@ -79,6 +82,34 @@ local function send_pass(add, port)
     print(add)
     -- Send pass code:
     modem.send(add, port, "pass")
+end
+
+function load_data(cpath, dpath)
+
+    -- De-serialize:
+
+    local cfile = io.open(cpath, "r")
+    local dfile = io.open(dpath, "r")
+
+    -- Load contents:
+
+    local ccont = cfile:read("*all")
+    local dfile = dfile:read("*all")
+
+    -- De-serialize:
+
+    credentials = seri.unserialize(ccont)
+    perm_map = seri.unserialize(dfile)
+
+    if (credentials == nil)
+    then
+        credentials = {}
+    end
+
+    if (perm_map == nil)
+    then
+        perm_map = {}
+    end
 end
 
 ------
@@ -173,6 +204,8 @@ function handle_network(message_name, recieverAddress, senderAddress, port, dist
     print("Could not find perm, send fail code!")
     send_fail(senderAddress, port)
 end
+
+load_data(cred_path, perm_path)
 
 -- Register event handlers
 

@@ -69,6 +69,16 @@ function load_data(cpath, dpath)
 
     credentials = seri.unserialize(ccont)
     perm_map = seri.unserialize(dfile)
+
+    if (credentials == nil)
+    then
+        credentials = {}
+    end
+
+    if (perm_map == nil)
+    then
+        perm_map = {}
+    end
 end
 
 function dump_data(cpath, dpath)
