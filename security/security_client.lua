@@ -244,7 +244,7 @@ then
 
     -- Clear the keypad:
 
-    keypad.clearDisplay()
+    keypad.setDisplay()
 end
 
 if (comp.isAvailable("os_rolldoor"))

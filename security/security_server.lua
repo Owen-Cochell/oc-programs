@@ -65,16 +65,6 @@ function set_contains(set, key)
     return set[key] ~= nil
 end
 
-local function has_value (tab, val)
-    for index, value in ipairs(tab) do
-        if value == val then
-            return true
-        end
-    end
-
-    return false
-end
-
 local function send_fail(add, port)
 
     print("Sending fail code!")
