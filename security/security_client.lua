@@ -12,6 +12,8 @@ local has_keyad = false
 
 local rolldoor = nil
 
+local secdoor = nil
+
 local keypadInput = ""
 
 -- For now, we are just a test script
@@ -70,6 +72,14 @@ function got_pass()
         -- Handle the rolldoor:
 
         handle_rolldoor()
+    end
+
+    if (secdoor ~= nil)
+    then
+        
+        -- Handle the secdoor:
+
+        handle_securitydoor()
     end
 end
 
@@ -192,6 +202,23 @@ function handle_rolldoor()
     rolldoor.close()
 end
 
+function handle_securitydoor()
+
+    -- Opens and closes a security door
+
+    print("Opening security door")
+
+    secdoor.open()
+
+    -- Wait 2 seconds:
+
+    os.sleep(2)
+
+    print("Closing security door")
+
+    secdoor.close()
+end
+
 -- Open port we have specified
 
 modem.open(port)
@@ -240,6 +267,8 @@ then
     -- Get the keypad:
     keypad = comp.os_keypad
 
+    has_keyad = true
+
     -- Add the event handler:
 
     event.listen("keypad", keypadEvent)
@@ -259,6 +288,18 @@ then
     -- Close it initially:
 
     rolldoor.close()
+end
+
+if (comp.isAvailable("os_doorcontroller"))
+then
+    
+    -- Get the securitydoor
+
+    secdoor = comp.os_doorcontroller
+
+    -- Close it initially:
+
+    secdoor.close()
 end
 
 -- Now, do nothing
