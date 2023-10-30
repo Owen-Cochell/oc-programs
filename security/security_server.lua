@@ -103,11 +103,13 @@ function load_data(cpath, dpath)
 
     if (credentials == nil)
     then
+        print("Did not find credentials")
         credentials = {}
     end
 
     if (perm_map == nil)
     then
+        print("Did not find device map")
         perm_map = {}
     end
 end
