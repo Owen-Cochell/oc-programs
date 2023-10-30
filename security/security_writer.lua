@@ -203,7 +203,7 @@ function add_credential()
         
         -- Add a biosig
 
-        parm_name = BIO_NAME
+        perm_name = BIO_NAME
 
         -- Determine if we have a bioreader:
 
