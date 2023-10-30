@@ -348,7 +348,7 @@ function add_dev_map()
         array = {}
     end
 
-    array.add(pname)
+    array[#array+1] = pname
 
     table[ptype] = array
 
