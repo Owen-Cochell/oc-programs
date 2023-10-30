@@ -515,7 +515,7 @@ end
 
 -- Load content:
 
-load_data(cred_path, perm_map)
+load_data(cred_path, perm_path)
 
 while (true) do
     
