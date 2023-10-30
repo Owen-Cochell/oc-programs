@@ -261,7 +261,7 @@ function remove_credential()
 
         print("Removing credential...")
 
-        credentials[ptype].remove(pname)
+        credentials[ptype][pname] = nil
 
         return
     end
