@@ -249,12 +249,16 @@ then
     keypad.setDisplay("")
 end
 
-if (comp.isAvailable("os_rolldoor"))
+if (comp.isAvailable("os_rolldoorcontroller"))
 then
     
     -- Get the rolldoor:
 
     rolldoor = comp.os_rolldoor
+
+    -- Close it initially:
+
+    rolldoor.close()
 end
 
 -- Now, do nothing
