@@ -53,7 +53,7 @@ function add_card()
     print("2. Add an existing card")
     print("3. Manual Card Data")
     
-    local cchoice = io.input()
+    local cchoice = io.read()
 
     if (cchoice == "1")
     then
@@ -64,10 +64,10 @@ function add_card()
         then
             
             print("Please enter a card display name:")
-            local dname = io.input()
+            local dname = io.read()
 
             print("Please enter a card color:")
-            local color = io.input()
+            local color = io.read()
 
             local writer = comp.os_cardwriter
 
@@ -124,7 +124,7 @@ function add_card()
 
         print("Please enter card data:")
 
-        local cardData = io.input()
+        local cardData = io.read()
 
         return cardData
     end
@@ -158,7 +158,7 @@ function add_credential()
     -- Otherwise, ask for perm name:
 
     print("Please input a permission name:")
-    local name = io.input()
+    local name = io.read()
 
     -- Determine the add method:
 
@@ -168,10 +168,10 @@ function add_credential()
         -- Add raw value, prompt
 
         print("Enter permission section:")
-        perm_name = io.input()
+        perm_name = io.read()
 
         print("Enter Permission Value:")
-        perm_value = io.input()
+        perm_value = io.read()
     end
 
     if (inp == '2')
@@ -225,7 +225,7 @@ function add_credential()
             -- No bioreader, just prompt:
 
             print("Please enter a player uuid:")
-            local perm_value = io.input()
+            local perm_value = io.read()
         end
     end
 
@@ -248,10 +248,10 @@ function remove_credential()
     -- Remove a credential:
 
     print("Enter a permission type:")
-    local ptype = io.input()
+    local ptype = io.read()
 
     print("Enter a permission name:")
-    local pname = io.input()
+    local pname = io.read()
 
     -- Determine if this exists:
 
@@ -275,7 +275,7 @@ function add_dev_map()
 
     print("Enter a device name:")
 
-    local dname = io.input()
+    local dname = io.read()
 
     -- Ensure device exists
 
@@ -291,7 +291,7 @@ function add_dev_map()
 
     print("Enter a permission type:")
 
-    local ptype = io.input()
+    local ptype = io.read()
 
     -- Ensure permission type exists:
 
@@ -309,7 +309,7 @@ function add_dev_map()
 
     print("Enter a permission name:")
 
-    local pname = io.input()
+    local pname = io.read()
 
     -- Ensure permission exists:
 
@@ -335,7 +335,7 @@ function remove_dev_map()
 
     print("Enter a device name:")
 
-    local dname = io.input()
+    local dname = io.read()
 
     -- Ensure deivce exists
 
@@ -353,7 +353,7 @@ function remove_dev_map()
 
     print("Enter a permission type:")
 
-    local ptype = io.input()
+    local ptype = io.read()
 
     -- Ensure permission exists
 
@@ -371,7 +371,7 @@ function remove_dev_map()
 
     print("Enter a permission name:")
 
-    local pname = io.input()
+    local pname = io.read()
 
     -- Ensure permission exists
 
@@ -396,7 +396,7 @@ function remove_device()
 
     print("Enter a device name:")
 
-    local dname = io.input()
+    local dname = io.read()
 
     -- Ensure device exists
 
@@ -462,7 +462,7 @@ while (true) do
         print("1. Add Credential")
         print("2. Remove Credential")
 
-        local inp = io.input()
+        local inp = io.read()
 
         if (inp == "1")
         then
@@ -492,7 +492,7 @@ while (true) do
         print("2. Remove Device Mapping")
         print("3. Remove Device")
 
-        local inp = io.input()
+        local inp = io.read()
 
         if (inp == "1")
         then
