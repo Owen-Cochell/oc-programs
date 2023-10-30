@@ -334,7 +334,25 @@ function add_dev_map()
 
     -- Otherwise, add the permission to the device:
 
-    perm_map[dname][ptype].add(pname)
+    local table = perm_map[dname]
+
+    if (table == nil)
+    then
+        table = {}
+    end
+
+    local array = table[ptype]
+
+    if (array == nil)
+    then
+        array = {}
+    end
+
+    array.add(pname)
+
+    table[ptype] = array
+
+    perm_map[dname] = table
 
 end
 
