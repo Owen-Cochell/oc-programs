@@ -12,6 +12,8 @@ local has_keyad = false
 
 local rolldoor = nil
 
+local keypadInput = ""
+
 -- For now, we are just a test script
 
 -- Port of server
