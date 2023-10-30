@@ -40,6 +40,16 @@ local perm_map = {
     }
 }
 
+-- Return the first index with the given value (or nil if not found).
+function indexOf(array, value)
+    for i, v in ipairs(array) do
+        if v == value then
+            return i
+        end
+    end
+    return nil
+end
+
 -----
 -- Alteration Function
 -----
@@ -402,14 +412,14 @@ function remove_dev_map()
 
     -- Ensure permission exists
 
-    local index = perm_map[dname][ptype].indexOf(pname)
+    local index = indexOf(perm_map[dname][ptype], pname)
 
     if (index ~= nil)
     then
         
         -- Found, remove permission
 
-        perm_map[dname][ptype].remove(index)
+        perm_map[dname][ptype][index] = nil
 
         return
     end
