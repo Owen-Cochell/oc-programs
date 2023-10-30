@@ -183,7 +183,7 @@ function add_credential()
 
         print("Please enter password:")
 
-        perm_value = op.input()
+        perm_value = io.input()
     end
 
     if (inp == '3')
@@ -195,7 +195,7 @@ function add_credential()
 
         -- Get value:
 
-        local perm_value = add_card()
+        perm_value = add_card()
     end
 
     if (inp == '4')
@@ -218,14 +218,14 @@ function add_credential()
 
             -- Add the value:
 
-            local perm_value = player_uuid
+            perm_value = player_uuid
         
         else
 
             -- No bioreader, just prompt:
 
             print("Please enter a player uuid:")
-            local perm_value = io.read()
+            perm_value = io.read()
         end
     end
 
