@@ -1,7 +1,7 @@
 -- Security Writer
 -- Allows for data to be added or removed from the security database
 
-local comp = require("components")
+local comp = require("component")
 local seri = require("serialization")
 local event = require("event")
 local uuid = require("uuid")
