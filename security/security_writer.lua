@@ -183,7 +183,7 @@ function add_credential()
 
         print("Please enter password:")
 
-        perm_value = io.input()
+        perm_value = io.read()
     end
 
     if (inp == '3')
