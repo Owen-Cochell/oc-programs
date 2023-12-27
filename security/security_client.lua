@@ -44,8 +44,6 @@ if (#args > 1)
 then
     -- Not enough arguments
 
-    print("Error - Must provide label")
-    os.exit()
     device_name = args[1]
 end
 
