@@ -258,6 +258,30 @@ end
 
 event.listen("modem_message", recieve_message)
 
+-- Determine if we have a security terminal:
+
+if (comp.isAvailable("os_securityterminal"))
+then
+    -- Configure the terminal to allow myself:
+    sect = comp.os_securityterminal
+
+    -- Configure the password
+
+    sect.setPassword("password")
+
+    -- Set the range
+
+    sect.setRange(4)
+
+    -- Add myself to the list
+
+    sect.addUser("password", "Trackercop")
+
+    -- Enable the terminal
+
+    sect.enable("password")
+end
+
 -- Determine if we have a bioreader
 
 if (comp.isAvailable("os_biometric"))
