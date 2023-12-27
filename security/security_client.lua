@@ -22,7 +22,7 @@ local keypadInput = ""
 local port = 5554
 
 -- Address of server
-local address = '0ef4f9a4-6720-43a6-8b84-7a9d350ff700'
+local address = 'f69a6fa5-3f2d-463f-9e9c-8b003da81c1a'
 
 -- Name of this device
 local device_name = 'testd'
