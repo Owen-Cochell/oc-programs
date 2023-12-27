@@ -50,13 +50,13 @@ function send_request(pname, pvalue)
 
     -- Send to server:
 
-    print("Sending request to server")
+    -- print("Sending request to server")
     modem.send(address, port, seri.serialize(req))
 end
 
 function got_pass()
 
-    print("We are authenticated!")
+    -- print("We are authenticated!")
 
     if (has_keyad == true)
     then
@@ -90,7 +90,7 @@ end
 
 function got_fail()
 
-    print("We failed to authenticate!")
+    -- print("We failed to authenticate!")
 
     if (has_keyad == true)
     then
@@ -131,7 +131,7 @@ function recieve_message(message_name, recieverAddress, senderAddress, port, dis
     if (senderAddress ~= address)
     then
         -- Not valid, ignore
-        print("Dropping packet, not from server!")
+        -- print("Dropping packet, not from server!")
         return
     end
 
@@ -160,7 +160,7 @@ function on_bio(address, reader_uuid, player_uuid)
 
     -- Just send the player UUID
 
-    print("Scanned Player: " .. player_uuid)
+    -- print("Scanned Player: " .. player_uuid)
 
     send_request(BIO_NAME, player_uuid)
 end
@@ -173,7 +173,7 @@ function on_card(eventName, address, playerName, cardData, cardUniqueId, isCardL
 end
 
 function keypadEvent(eventName, address, button, button_label)
-    print("button pressed: " .. button_label)
+    -- print("button pressed: " .. button_label)
 
     if button_label == "*" then
         -- remove last character from input cache
@@ -194,7 +194,7 @@ function handle_rolldoor()
 
     -- Opens and closes a rolldoor
 
-    print("Opening rolldoor")
+    -- print("Opening rolldoor")
 
     rolldoor.open()
 
@@ -202,7 +202,7 @@ function handle_rolldoor()
 
     os.sleep(3)
 
-    print("Closing rolldoor")
+    -- print("Closing rolldoor")
 
     rolldoor.close()
 end
@@ -211,7 +211,7 @@ function handle_securitydoor()
 
     -- Opens and closes a security door
 
-    print("Opening security door")
+    -- print("Opening security door")
 
     secdoor.open()
 
@@ -219,7 +219,7 @@ function handle_securitydoor()
 
     os.sleep(2)
 
-    print("Closing security door")
+    -- print("Closing security door")
 
     secdoor.close()
 end
@@ -233,7 +233,7 @@ modem.open(port)
 if (not modem.isOpen(port))
 then
     -- Do something..
-    print("Unable to open port!!!")
+    -- print("Unable to open port!!!")
     os.exit()
 end
 
@@ -251,7 +251,7 @@ if (comp.isAvailable("os_biometric"))
 then
     -- Is present, add event handler
 
-    print("Found BioReader!")
+    -- print("Found BioReader!")
 
     event.listen("bioReader", on_bio)
 end
@@ -261,7 +261,7 @@ then
 
     -- Is present, add event handler
 
-    print("Found MagReader!")
+    -- print("Found MagReader!")
 
     event.listen("magData", on_card)
 end
@@ -309,45 +309,45 @@ end
 
 -- Now, do nothing
 
-while true do
-    local junk = io.read()
+-- while true do
+--     local junk = io.read()
 
-    if (junk == 'q')
-    then
-        -- Break out of this loop
-        break
-    end
-end
+--     if (junk == 'q')
+--     then
+--         -- Break out of this loop
+--         break
+--     end
+-- end
 
--- Unregister event handlers:
+-- -- Unregister event handlers:
 
-event.ignore("modem_message", recieve_message)
+-- event.ignore("modem_message", recieve_message)
 
-if (comp.isAvailable("os_biometric"))
-then
-    -- Is present, remove event handler
+-- if (comp.isAvailable("os_biometric"))
+-- then
+--     -- Is present, remove event handler
 
-    print("Removing BioReader!")
+--     print("Removing BioReader!")
 
-    event.ignore("bioReader", on_bio)
-end
+--     event.ignore("bioReader", on_bio)
+-- end
 
-if (comp.isAvailable("os_magreader"))
-then
-    -- Is present, remove event handler
+-- if (comp.isAvailable("os_magreader"))
+-- then
+--     -- Is present, remove event handler
 
-    print("Found MagReader!")
+--     print("Found MagReader!")
 
-    event.ignore("magData", on_card)
-end
+--     event.ignore("magData", on_card)
+-- end
 
-if (has_keyad)
-then
-    -- Remove the event handler:
+-- if (has_keyad)
+-- then
+--     -- Remove the event handler:
 
-    event.ignore("keypad", keypadEvent)
+--     event.ignore("keypad", keypadEvent)
 
-    -- Set keypad to be inactive:
+--     -- Set keypad to be inactive:
 
-    keypad.setDisplay("inactive", 6)
-end
+--     keypad.setDisplay("inactive", 6)
+-- end
