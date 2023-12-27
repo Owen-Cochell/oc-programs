@@ -40,7 +40,7 @@ local MAG_NAME = "MAG"
 
 -- Parse args
 
-if (#args > 1)
+if (#args > 0)
 then
     -- Not enough arguments
 
