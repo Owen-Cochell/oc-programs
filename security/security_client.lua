@@ -271,7 +271,7 @@ then
 
     -- Set the range
 
-    sect.setRange(4)
+    sect.setRange("pass", 4)
 
     -- Add myself to the list
 
