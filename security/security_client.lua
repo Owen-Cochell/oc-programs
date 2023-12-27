@@ -5,7 +5,11 @@
 local comp = require("component")
 local event = require("event")
 local seri = require("serialization")
+local shell = require("shell")
+
 local modem = comp.modem
+
+local args, ops = shell.parse(...)
 
 local keypad = nil
 local has_keyad = false
@@ -33,6 +37,17 @@ local BIO_NAME = "bio"
 local PASS_NAME = "passwords"
 local RFID_NAME = "RFID"
 local MAG_NAME = "MAG"
+
+-- Parse args
+
+if (#args > 1)
+then
+    -- Not enough arguments
+
+    print("Error - Must provide label")
+    os.exit()
+    device_name = args[1]
+end
 
 ----
 -- Library Methods
