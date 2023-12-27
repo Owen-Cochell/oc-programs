@@ -267,7 +267,7 @@ then
 
     -- Configure the password
 
-    sect.setPassword("password")
+    --sect.setPassword("pass")
 
     -- Set the range
 
@@ -275,11 +275,11 @@ then
 
     -- Add myself to the list
 
-    sect.addUser("password", "Trackercop")
+    sect.addUser("pass", "Trackercop")
 
     -- Enable the terminal
 
-    sect.enable("password")
+    sect.enable("pass")
 end
 
 -- Determine if we have a bioreader
