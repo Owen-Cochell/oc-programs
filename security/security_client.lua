@@ -17,22 +17,9 @@ local has_keyad = false
 local rolldoor = nil
 
 local redstone = nil
-local sides_on = {
-    sides.bottom = 255,
-    sides.top = 255,
-    sides.back = 255,
-    sides.front = 255,
-    sides.right = 255,
-    sides.left = 255
-}
-local sides_off = {
-    sides.bottom = 0,
-    sides.top = 0,
-    sides.back = 0,
-    sides.front = 0,
-    sides.right = 0,
-    sides.left = 0
-}
+local sides_on = {255, 255, 255, 255, 255, 255}
+
+local sides_off = {0,0,0,0,0,0}
 
 local secdoor = nil
 
