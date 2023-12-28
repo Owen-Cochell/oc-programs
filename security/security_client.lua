@@ -255,7 +255,7 @@ function handle_redstoneio()
 
     -- Create signal:
 
-    redstone.setOutput(255)
+    redstone.setOutput(sides_on)
 
     -- Wait for a time:
 
@@ -263,7 +263,7 @@ function handle_redstoneio()
 
     -- Stop the signal:
 
-    redstone.setOutput(0)
+    redstone.setOutput(sides_off)
 end
 
 -- Open port we have specified
@@ -382,7 +382,7 @@ then
 
     -- Ensure it is off by default:
 
-    redstone.setOutput(0)
+    redstone.setOutput(sides_off)
 end
 
 -- Now, do nothing
