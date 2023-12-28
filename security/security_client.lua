@@ -16,6 +16,8 @@ local has_keyad = false
 
 local rolldoor = nil
 
+local redstone = nil
+
 local secdoor = nil
 
 local keypadInput = ""
@@ -93,6 +95,13 @@ function got_pass()
         -- Handle the secdoor:
 
         handle_securitydoor()
+    end
+
+    if (redstone ~= nil)
+    then
+        -- Handle the redstone IO
+
+        handle_redstoneio()
     end
 
     if (has_keyad == true)
@@ -237,6 +246,23 @@ function handle_securitydoor()
     secdoor.close()
 end
 
+function handle_redstoneio()
+
+    -- Actiavtes and deactivates a redstone IO card
+
+    -- Create signal:
+
+    redstone.setOutput(255)
+
+    -- Wait for a time:
+
+    os.sleep(2)
+
+    -- Stop the signal:
+
+    redstone.setOutput(0)
+end
+
 -- Open port we have specified
 
 modem.open(port)
@@ -342,6 +368,18 @@ then
     -- Close it initially:
 
     secdoor.close()
+end
+
+if (comp.isAvailable("redstone"))
+then
+
+    -- Get the redstone IO component:
+
+    redstone = comp.redstone
+
+    -- Ensure it is off by default:
+
+    redstone.setOutput(0)
 end
 
 -- Now, do nothing
