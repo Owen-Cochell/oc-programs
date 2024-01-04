@@ -90,8 +90,18 @@ end
 local function send_players(add, port)
     print("Sending pass code")
     print(add)
+
+    -- Determine if the credential does not exist
+
+    if (not set_contains(credentials, "term"))
+    then
+        -- Just return
+        print("No term permission!")
+        return
+    end
+
     -- Send player list
-    modem.send(add, port, seri.serialize(perm_map['term']))
+    modem.send(add, port, seri.serialize(credentials['term']))
 end
 
 function load_data(cpath, dpath)
@@ -158,6 +168,18 @@ function handle_network(message_name, recieverAddress, senderAddress, port, dist
 
     print("Permission Value: " .. perm_value)
 
+    -- Determine if permission is for security terminals:
+
+    if (perm_name == "term")
+    then
+
+        print("Got terminal perm map...")
+
+        -- Determine if value is present
+
+        send_players(senderAddress, port)
+    end
+
     -- Determine if name is in perm_map:
 
     if (not set_contains(perm_map, name))
@@ -185,18 +207,6 @@ function handle_network(message_name, recieverAddress, senderAddress, port, dist
     end
 
     -- Get the device permission name:
-
-    -- Determine if permission is for security terminals:
-
-    if (perm_name == "term")
-    then
-
-        print("Got terminal perm map...")
-
-        -- Determine if value is present
-
-        send_players(senderAddress, port)
-    end
 
     -- Permission name is valid, ensure permission value is in the permission set
 
