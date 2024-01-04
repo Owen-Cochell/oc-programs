@@ -22,6 +22,7 @@ local sides_on = {255, 255, 255, 255, 255, 255}
 local sides_off = {0,0,0,0,0,0}
 
 local secdoor = nil
+local sect
 
 local keypadInput = ""
 
@@ -145,6 +146,22 @@ function setAuth(auth)
     os.sleep(1)
 end
 
+function clear_players_term()
+
+    -- Get list of players
+
+    local players = sect
+
+    for i in string.gmatch(example, "%S+") do
+        
+        print(i)
+
+        -- Remove the player from the terminal:
+
+        sect.delUser(i)
+     end
+end
+
 ----
 -- Network Handlers
 ----
@@ -175,6 +192,33 @@ function recieve_message(message_name, recieverAddress, senderAddress, port, dis
 
         got_fail()
     end
+
+    -- Try to deserialize the data:
+
+    local data = seri.unserialize(sdata)
+
+    -- Clear the player list:
+
+    clear_players_term()
+
+    -- Add new players:
+
+    for play in pairs(data) do
+        
+        -- Add user to terminal
+
+        print("Adding User")
+        print(play)
+        sect.addUser("pass", play)
+    end
+end
+
+function ask_terms()
+
+    -- Ask the server for the player list:
+
+    print("Asking server for perms")
+    send_request("term", "none")
 end
 
 ----
@@ -304,7 +348,11 @@ then
 
     -- Add myself to the list
 
-    sect.addUser("pass", "Trackercop")
+    --sect.addUser("pass", "Trackercop")
+
+    -- Ask for perms
+
+    ask_terms()
 
     -- Enable the terminal
 

@@ -13,6 +13,7 @@ local BIO_NAME = "bio"
 local PASS_NAME = "passwords"
 local RFID_NAME = "RFID"
 local MAG_NAME = "MAG"
+local TERM_NAME = "term"
 
 local BAD_VALUE = "BAD_VALUE"
 
@@ -31,6 +32,9 @@ local credentials = {
     },
     MAG={
         test='test',
+    }
+    term={
+        {"Trackercop"}
     }
 }
 
