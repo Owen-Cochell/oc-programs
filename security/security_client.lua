@@ -160,13 +160,13 @@ function clear_players_term()
 
     -- Determine if table is empty:
 
-    if not next(players) then
+    if next(players) == nil then
         -- Table is empty, do nothing
         print("Table is empty")
     end
 
     print("After print")
-    print(seri.serialization(players))
+    print(seri.serialize(players))
     print("After serialization")
 
     for i in string.gmatch(example, "%S+") do
