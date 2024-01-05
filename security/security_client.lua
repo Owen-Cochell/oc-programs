@@ -169,7 +169,7 @@ function clear_players_term()
     print(seri.serialize(players))
     print("After serialization")
 
-    for i in string.gmatch(example, "%S+") do
+    for key, i in pairs(players) do
 
         print(i)
 
