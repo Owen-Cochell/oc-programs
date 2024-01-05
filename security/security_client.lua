@@ -157,6 +157,14 @@ function clear_players_term()
 
     print("Got player list...")
     print(players)
+
+    -- Determine if table is empty:
+
+    if not next(players) then
+        -- Table is empty, do nothing
+        print("Table is empty")
+    end
+
     print("After print")
     print(seri.serialization(players))
     print("After serialization")
