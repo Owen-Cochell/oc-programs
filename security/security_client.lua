@@ -203,6 +203,7 @@ function recieve_message(message_name, recieverAddress, senderAddress, port, dis
 
     print("Data:")
     print(data)
+    print(sdata)
 
     -- Clear the player list:
 
