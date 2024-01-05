@@ -187,7 +187,7 @@ function clear_players_term()
         -- Remove the player from the terminal:
 
         print(i)
-        sect.delUser(i)
+        sect.delUser("pass", i)
      end
      --print("Done iterating")
 end
