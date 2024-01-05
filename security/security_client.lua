@@ -157,6 +157,7 @@ function clear_players_term()
 
     print("Got player list...")
     print(players)
+    print(seri.serialization(players))
 
     for i in string.gmatch(example, "%S+") do
 
@@ -166,6 +167,7 @@ function clear_players_term()
 
         sect.delUser(i)
      end
+     print("Done iterating")
 end
 
 ----
