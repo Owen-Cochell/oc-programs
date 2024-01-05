@@ -155,8 +155,8 @@ function clear_players_term()
 
     local players = sect.getAllowedUsers("pass")
 
-    --print("Got player list...")
-    --print(players)
+    print("Got player list...")
+    print(players)
 
     -- Determine if table is empty:
 
