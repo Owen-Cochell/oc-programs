@@ -151,33 +151,34 @@ function clear_players_term()
 
     -- Get list of players
 
-    print("Clearing players")
+    --print("Clearing players")
 
     local players = sect.getAllowedUsers("pass")
 
-    print("Got player list...")
-    print(players)
+    --print("Got player list...")
+    --print(players)
 
     -- Determine if table is empty:
 
     if next(players) == nil then
         -- Table is empty, do nothing
-        print("Table is empty")
+        --print("Table is empty")
+        return
     end
 
-    print("After print")
-    print(seri.serialize(players))
-    print("After serialization")
+    --print("After print")
+    --print(seri.serialize(players))
+    --print("After serialization")
 
     for key, i in pairs(players) do
 
-        print(i)
+        --print(i)
 
         -- Remove the player from the terminal:
 
         sect.delUser(i)
      end
-     print("Done iterating")
+     --print("Done iterating")
 end
 
 ----
@@ -188,7 +189,7 @@ function recieve_message(message_name, recieverAddress, senderAddress, port, dis
 
     -- Ensure we can only accept messages from the server:
 
-    print("Got message!")
+    --print("Got message!")
     if (senderAddress ~= address)
     then
         -- Not valid, ignore
@@ -216,9 +217,9 @@ function recieve_message(message_name, recieverAddress, senderAddress, port, dis
 
     local data = seri.unserialize(sdata)
 
-    print("Data:")
-    print(data)
-    print(sdata)
+    --print("Data:")
+    --print(data)
+    --print(sdata)
 
     -- Clear the player list:
 
@@ -226,14 +227,14 @@ function recieve_message(message_name, recieverAddress, senderAddress, port, dis
 
     -- Add new players:
 
-    print("ITerating players")
+    --print("ITerating players")
 
     for key, play in pairs(data) do
         
         -- Add user to terminal
 
-        print("Adding User")
-        print(play)
+        --print("Adding User")
+        --print(play)
         sect.addUser("pass", play)
     end
 end
@@ -242,7 +243,7 @@ function ask_terms()
 
     -- Ask the server for the player list:
 
-    print("Asking server for perms")
+    --print("Asking server for perms")
     send_request("term", "none")
 end
 
