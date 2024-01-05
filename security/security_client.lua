@@ -162,7 +162,7 @@ function clear_players_term()
 
     if next(players) == nil then
         -- Table is empty, do nothing
-        --print("Table is empty")
+        print("Table is empty")
         return
     end
 
