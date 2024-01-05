@@ -234,9 +234,11 @@ function recieve_message(message_name, recieverAddress, senderAddress, port, dis
         -- Add user to terminal
 
         --print("Adding User")
-        --print(play)
+        print(play)
         sect.addUser("pass", play)
     end
+
+    sect.enable("pass")
 end
 
 function ask_terms()
