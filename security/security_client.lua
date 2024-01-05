@@ -159,6 +159,15 @@ function clear_players_term()
     print(players)
     print(sect.isEnabled())
 
+    -- Determine if there are no players:
+
+    if (not players)
+    then
+        -- SImply do nothing!
+        print("No players...")
+        return
+    end
+
     -- Determine if table is empty:
 
     if next(players) == nil then
