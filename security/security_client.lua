@@ -51,6 +51,7 @@ then
     -- Not enough arguments
 
     device_name = args[1]
+    address = args[2]
 end
 
 ----
