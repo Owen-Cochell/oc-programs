@@ -155,6 +155,9 @@ function clear_players_term()
 
     local players = sect.getAllowedUsers("pass")
 
+    print("Got player list...")
+    print(players)
+
     for i in string.gmatch(example, "%S+") do
 
         print(i)
