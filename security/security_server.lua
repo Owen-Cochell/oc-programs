@@ -88,7 +88,7 @@ local function send_pass(add, port)
 end
 
 local function send_players(add, port)
-    print("Sending pass code")
+    print("Sending player data")
     print(add)
 
     -- Determine if the credential does not exist
@@ -99,6 +99,8 @@ local function send_players(add, port)
         print("No term permission!")
         return
     end
+
+    print(seri.serialize(credentials['term']))
 
     -- Send player list
     modem.send(add, port, seri.serialize(credentials['term']))
