@@ -157,7 +157,7 @@ function clear_players_term()
 
     print("Got player list...")
     print(players)
-    print(sect.isEnabled)
+    print(sect.isEnabled())
 
     -- Determine if table is empty:
 
