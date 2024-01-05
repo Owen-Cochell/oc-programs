@@ -178,6 +178,8 @@ function handle_network(message_name, recieverAddress, senderAddress, port, dist
         -- Determine if value is present
 
         send_players(senderAddress, port)
+
+        return
     end
 
     -- Determine if name is in perm_map:

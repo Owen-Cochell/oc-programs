@@ -151,6 +151,8 @@ function clear_players_term()
 
     -- Get list of players
 
+    print("Clearing players")
+
     local players = sect
 
     for i in string.gmatch(example, "%S+") do
