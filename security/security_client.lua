@@ -157,7 +157,9 @@ function clear_players_term()
 
     print("Got player list...")
     print(players)
+    print("After print")
     print(seri.serialization(players))
+    print("After serialization")
 
     for i in string.gmatch(example, "%S+") do
 
