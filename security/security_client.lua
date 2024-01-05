@@ -153,10 +153,10 @@ function clear_players_term()
 
     print("Clearing players")
 
-    local players = sect
+    local players = sect.getAllowedUsers("pass")
 
     for i in string.gmatch(example, "%S+") do
-        
+
         print(i)
 
         -- Remove the player from the terminal:
@@ -211,7 +211,9 @@ function recieve_message(message_name, recieverAddress, senderAddress, port, dis
 
     -- Add new players:
 
-    for play in pairs(data) do
+    print("ITerating players")
+
+    for key, play in pairs(data) do
         
         -- Add user to terminal
 
