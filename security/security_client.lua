@@ -151,7 +151,7 @@ function clear_players_term()
 
     -- Get list of players
 
-    --print("Clearing players")
+    print("Clearing players")
 
     local players = sect.getAllowedUsers("pass")
 
@@ -233,7 +233,7 @@ function recieve_message(message_name, recieverAddress, senderAddress, port, dis
         
         -- Add user to terminal
 
-        --print("Adding User")
+        print("Adding User")
         print(play)
         sect.addUser("pass", play)
     end
