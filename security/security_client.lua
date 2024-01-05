@@ -173,6 +173,7 @@ function recieve_message(message_name, recieverAddress, senderAddress, port, dis
 
     -- Ensure we can only accept messages from the server:
 
+    print("Got message!")
     if (senderAddress ~= address)
     then
         -- Not valid, ignore
@@ -199,6 +200,9 @@ function recieve_message(message_name, recieverAddress, senderAddress, port, dis
     -- Try to deserialize the data:
 
     local data = seri.unserialize(sdata)
+
+    print("Data:")
+    print(data)
 
     -- Clear the player list:
 
