@@ -382,6 +382,10 @@ then
     -- Enable the terminal
 
     sect.enable("pass")
+
+    -- Enable security terminal query every 5 minues
+
+    event.timer(300, ask_terms, math.huge)
 end
 
 -- Determine if we have a bioreader
