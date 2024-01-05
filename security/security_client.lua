@@ -168,11 +168,11 @@ function clear_players_term()
 
     --print("After print")
     --print(seri.serialize(players))
-    --print("After serialization")
+    print("After serialization")
 
     for key, i in pairs(players) do
 
-        --print(i)
+        print(i)
 
         -- Remove the player from the terminal:
 
